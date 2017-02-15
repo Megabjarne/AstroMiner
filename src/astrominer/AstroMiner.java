@@ -15,7 +15,13 @@ public class AstroMiner {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        InputParser.ParsedInput p = InputParser.parse("move left -s 10 -r 0");
+        for (String s:p.command){
+            System.out.println(s);
+        }
+        for (String key:p.flags.keySet()){
+            System.out.println(key + " - " + p.flags.get(key));
+        }
     }
     
 }

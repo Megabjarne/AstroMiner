@@ -15,4 +15,5 @@ public abstract class Entity {
     protected int getID(){return ID;};
     public abstract Vector getPosition();
     public abstract Vector getSpeed();
+    public abstract void gameTick();
 }
