@@ -14,6 +14,7 @@ import java.util.HashMap;
  */
 public class InputParser {
     public static ParsedInput parse(String s){
+        if (s==null || s.equals("")){return null;}
         ParsedInput retPut = new ParsedInput();
         String parts[] = s.split(" ");
         int i=0;

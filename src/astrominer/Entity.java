@@ -11,9 +11,10 @@ package astrominer;
  */
 public abstract class Entity {
     private int ID;
-    protected Entity(){ID=EntityRegistry.getID();}
+    protected Entity(){ID=EntityRegistry.getID();EntityRegistry.getInstance().register(this);}
     protected int getID(){return ID;};
     public abstract Vector getPosition();
     public abstract Vector getSpeed();
     public abstract void gameTick();
+    public String getName(){return "Unnamed entity";}
 }

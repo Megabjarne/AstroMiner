@@ -21,4 +21,5 @@ public class Vector {
     public Vector norm(){return new Vector(x/length(),y/length());}
     public double length(){return Math.sqrt(x*x+y*y);}
     public double ang(){return Math.atan2(y, x);}
+    public String toString(){return "[" + Double.toString(x) + ":" + Double.toString(y) + "]";}
 }

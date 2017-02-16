@@ -15,12 +15,10 @@ public class AstroMiner {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        InputParser.ParsedInput p = InputParser.parse("move left -s 10 -r 0");
-        for (String s:p.command){
-            System.out.println(s);
-        }
-        for (String key:p.flags.keySet()){
-            System.out.println(key + " - " + p.flags.get(key));
+        Player player = new Player();
+        while (true){
+            player.gameTick();
+            try{Thread.sleep(500);}catch(Exception ex){System.out.println("fail");}
         }
     }
     

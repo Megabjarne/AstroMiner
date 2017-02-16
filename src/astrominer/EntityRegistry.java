@@ -44,4 +44,7 @@ public class EntityRegistry {
         }
         return retList;
     }
+    public void register(Entity e){
+        entityList.add(e);
+    }
 }
