@@ -5,6 +5,8 @@
  */
 package astrominer;
 
+import java.io.IOException;
+
 /**
  *
  * @author Windows User
@@ -14,11 +16,15 @@ public class AstroMiner {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Player player = new Player();
         while (true){
             player.gameTick();
+            System.out.println(player.getPosition().toString());
             try{Thread.sleep(500);}catch(Exception ex){System.out.println("fail");}
+            if (player.input.hasInput()){
+                System.out.println(Player.input.getInput());
+            }
         }
     }
     

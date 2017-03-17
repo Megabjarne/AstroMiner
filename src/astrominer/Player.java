@@ -6,9 +6,7 @@
 package astrominer;
 
 import astrominer.Tasks.Task;
-import java.io.BufferedInputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -17,8 +15,8 @@ import java.util.Scanner;
 public class Player extends Entity {
     Vector position, speed;
     double rotation;
-    BufferedInputStream inputStream;
-    Scanner input;
+    static InputHandler input = new InputHandler();
+    
     enum TargetingTypes{TARGETRELATIVE,SPACERELATIVE}
     TargetingTypes currentTargetType ;
     int targetID=-1;
@@ -26,12 +24,11 @@ public class Player extends Entity {
     
     public Player(){
         super();
-        inputStream = new BufferedInputStream(System.in);
-        input = new Scanner(inputStream);
         currentTargetType = TargetingTypes.SPACERELATIVE;
         position = new Vector(0,0);
         speed = new Vector(0,0);
         addCommands();  //register all player commands
+        input.start();
     }
     @Override
     public Vector getSpeed(){
@@ -44,15 +41,12 @@ public class Player extends Entity {
     @Override
     public void gameTick(){
         try{
-            if (inputStream.available()>0){
-                System.out.println("Handling line");
-                processInput(input.nextLine());
-            }
             if (currentTask!=null && !currentTask.done()){
                 currentTask.doWork();
             }
         }catch (Exception ex){
             System.out.println("something failed");
+            System.out.println(ex.getMessage());
             System.exit(0);
         }
     }
@@ -68,6 +62,7 @@ public class Player extends Entity {
         }
         System.out.println("Unknown command '" + s + "'");
     }
+    
     public void addCommands(){
         //magically accelerate/rotate player
         commandRegister.add(new Command(){
